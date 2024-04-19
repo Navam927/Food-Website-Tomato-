@@ -10,6 +10,7 @@ const FoodItem = ({id,name,price,descreption,image}) => {
     <div className='food-item'>
       <div className="food-item-img-container">
         <img  className='food-item-image' src={image} alt="" />  
+        
       </div>
 
         <div className="food-item-info">
