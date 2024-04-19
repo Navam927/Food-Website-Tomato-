@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { food_list } from "../assets/assets";
 import PropTypes from "prop-types";
 
@@ -21,6 +21,8 @@ const StoreContextProvider = (props) => {
   const removeFromCart = (itemId) => {
       setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}))
   }
+
+  
 
   const ContextValue = {
     food_list,
