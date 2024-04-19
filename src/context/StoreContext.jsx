@@ -1,35 +1,16 @@
-import { createContext, useState } from "react";
-import PropTypes from "prop-types";
-
+import { createContext } from "react";
 import { food_list } from "../assets/assets";
+import PropTypes from "prop-types";
 
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-  const [cartItems, setCartItems] = useState({});
-
-  const addToCart = (itemId) => {
-    if (!cartItems[itemId]) {
-      setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
-    } else {
-      setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-    }
-  };
-
-  const removeFromCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-  };
-
-  const contextValue = {
+  const ContextValue = {
     food_list,
-    cartItems,
-    setCartItems,
-    addToCart,
-    removeFromCart,
   };
 
   return (
-    <StoreContext.Provider value={contextValue}>
+    <StoreContext.Provider value={ContextValue}>
       {props.children}
     </StoreContext.Provider>
   );
