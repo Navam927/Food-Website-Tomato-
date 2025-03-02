@@ -6,9 +6,9 @@ const Footer = () => {
     <div className="footer" id="footer">
       <div className="footer-content">
         <div className="footer-content-left">
-          <img src={assets.logo} alt="" />
+          <img src={assets.snackspot} alt="" />
           <p>
-            Welcome to Tomato, where every dish is a masterpiece crafted with
+            Welcome to SnackSpot, where every dish is a masterpiece crafted with
             passion and care. Explore our diverse menu of culinary delights,
             sourced from the finest ingredients. Join us in celebrating the joy
             of food!
@@ -32,13 +32,13 @@ const Footer = () => {
           <h2>GET IN TOUCH</h2>
           <ul>
             <li>+1-212-456-7890</li>
-            <li>contact@tomato.com</li>
+            <li>contact@SnackSpot.com</li>
           </ul>
         </div>
       </div>
       <hr />
       <p className="footer-copyright">
-        Copyright 2024 &copy; Tomato.com - All Rights Reserved.
+        Copyright 2024 &copy; SnackSpot.com - All Rights Reserved.
       </p>
     </div>
   );
