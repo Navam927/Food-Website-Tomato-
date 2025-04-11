@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 
 import LoginPopup from "./components/LoginPopup/LoginPopup";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -14,6 +15,7 @@ const App = () => {
   return (
     <>
       {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
+      <ToastContainer />
       <div className="app">
         <Navbar setShowLogin={setShowLogin} />
 

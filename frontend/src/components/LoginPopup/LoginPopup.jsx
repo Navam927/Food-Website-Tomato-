@@ -2,59 +2,53 @@ import "./LoginPopup.css";
 import { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
-import axios from "axios";
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const LoginPopup = ({ setShowLogin }) => {
 
-  const {url,setToken}=useContext(StoreContext);
+  const {url, setToken} = useContext(StoreContext)
+
   const [currState, setCurrState] = useState("Login");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [data,setData]=useState({
-    name:"",
-    email:"",
-    password:""
+  const [data, setData] = useState({
+    name : "",
+    email : "",
+    password : ""
   })
-  
 
-  const onChangeHandler=(event)=>{
-    const name=event.target.name;
-    const value=event.target.value;
-    setData(data=>({...data,[name]:value}))
+  const onChangeHandler = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
 
+    setData(data => ({
+      ...data,[name] : value 
+    }))
   }
 
-  const onLogin = async(event)=>{
+  const onLogin = async (event) => {
+    console.log('onLogin function called')
     event.preventDefault();
-    let newUrl =url;
+    let newUrl = url;
 
-    if(currState==="Login"){
-      newUrl+="/api/user/login";
+    if(currState === 'Login') {
+      newUrl += "/api/user/login"
+    } else {
+      newUrl += "/api/user/register"
     }
-    else{
-      newUrl +="/api/user/register";
-    }
-    const response=await axios.post(newUrl,data);
 
-    if(response.data.success){
-        setToken(response.data.token);
-        localStorage.setItem("token",response.data.token);
-        setShowLogin(false);
-    }
-    else{
-      alert(response.data.message);
+    const response = await axios.post(newUrl, data);
+
+    if(response.data.success) {
+      toast.success(response.data.message);
+      setToken(response.data.token);
+      localStorage.setItem("token", response.data.token)
+      setShowLogin(false);
+    } else {
+      console.log(response.data);
+      toast.error(response.data.message);
     }
   }
 
- 
-  // hardcoded need to be changed
-  const handleLogin = () => {
-    if (email === "hello@gmail.com" && password === "1234") {
-      alert("Login successful");
-    } else {
-      alert("No data found. Please sign up.");
-    }
-  };
 
   return (
     <div className="login-popup">
@@ -72,36 +66,33 @@ const LoginPopup = ({ setShowLogin }) => {
             <></>
           ) : (
             <input
-              name='name'
+              name="name"
               onChange={onChangeHandler}
-              value={data.name}
               type="text"
               placeholder="Your name"
               required
-              // onChange={(e) => setEmail(e.target.value)}
+              value={data.name}
             />
           )}
           <input
-            name='email'
-            type="email"
+            name="email"
             onChange={onChangeHandler}
-            value={data.email}
+            type="email"
             placeholder="Your email"
             required
-            // onChange={(e) => setEmail(e.target.value)}
+            value={data.email}
           />
           <input
-          name='password'
-
-            type="password"
+            name="password"
             onChange={onChangeHandler}
-            value={data.password}
+            type="password"
             placeholder="Password"
             required
-            // onChange={(e) => setPassword(e.target.value)}
+            value={data.password}
           />
         </div>
-        <button type="submit" onClick={handleLogin}>
+
+        <button type="submit" >
           {currState === "Sign Up" ? "Create account" : "Login"}
         </button>
         <div className="login-popup-condition">
