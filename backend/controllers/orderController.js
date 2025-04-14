@@ -3,6 +3,8 @@ import userModel from "../models/userModel.js";
 import Stripe from "stripe";
 
 // placing user order from frontend 
+process.loadEnvFile('./secret.env');
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const placeOrder = async (req, res) => {
