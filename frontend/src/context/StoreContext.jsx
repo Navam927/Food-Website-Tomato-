@@ -5,7 +5,7 @@ import axios from 'axios';
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-  const [cartItems, setCartItems] = useState({}); // Creates blank page
+  const [cartItems, setCartItems] = useState({}); 
 
   const url="http://localhost:4000";
   const [token,setToken]=useState("")
@@ -82,6 +82,6 @@ const StoreContextProvider = (props) => {
 
 StoreContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
-};
+}; 
 
 export default StoreContextProvider;
