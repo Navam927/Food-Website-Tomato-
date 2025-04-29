@@ -1,6 +1,6 @@
 // filepath: c:\Users\Navam\Desktop\Projects\Food-Website-Tomato-\backend\config\postgree.js
 import { Pool } from 'pg';
-import dotenv from 'dotenv';
+
 
 // Load environment variables
 process.loadEnvFile('./secret.env');
