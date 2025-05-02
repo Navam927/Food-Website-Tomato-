@@ -1,17 +1,18 @@
 import foodModel from "../models/foodModel.js";
-import fs from 'fs';
+import { removeImage } from "../utils/removeImage.js";
+
 
 // add food item 
 
 const addFood = async (req, res) => {
-    let image_filename = `${req.file.filename}`;
-    console.log("image filename is ", image_filename);
+    console.log("req.body -> ",req.body);
     const food = new foodModel({
         name : req.body.name,
         description : req.body.description,
         price : req.body.price,
-        image : image_filename,
-        category : req.body.category
+        category : req.body.category,
+        url : req.body.url,
+        public_id : req.body.public_id
     })
     try {
         console.log("food object is: ", food);
@@ -51,9 +52,9 @@ const listFood = async (req, res) => {
 const removeFood = async (req, res) => {
     try {
         const food = await foodModel.findById(req.body.id);
-        fs.unlink(`uploads/${food.image}`, () => {});
+        console.log(food);
         await foodModel.findByIdAndDelete(req.body.id);
-
+        removeImage(food.public_id);
         res.json({
             success : true, 
             message : "Food item removed successfully"

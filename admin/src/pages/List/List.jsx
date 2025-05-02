@@ -13,7 +13,6 @@ const List = ({url}) => {
     const response = await axios.get(`${url}/api/food/list`);
 
 
-
     if(response.data.success) {
       console.log(response.data)
       setList(response.data.data);
@@ -52,7 +51,7 @@ const List = ({url}) => {
         {list.map((item, index) => {
           return (
             <div key={index} className='list-table-format' >
-              <img src={ `${url}/images/` + item.image } />
+              <img src={ item.url }/> 
               <p> {item.name}  </p>
               <p> {item.category} </p>
               <p> ${item.price} </p>
