@@ -1,9 +1,6 @@
 import cloudinary from "cloudinary";
 
-
-
 export const connectCloudinary = async () => {
-    process.loadEnvFile('./secret.env');
     cloudinary.config({
         cloud_name: process.env.CLOUD_NAME,
         api_key: process.env.CLOUD_API_KEY,
