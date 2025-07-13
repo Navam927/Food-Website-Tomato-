@@ -6,6 +6,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({}); 
+  const [backendDown, setBackendDown] = useState(false);
 
   const url="https://food-website-tomato.onrender.com";
   const [token,setToken]=useState("")
@@ -41,15 +42,27 @@ const StoreContextProvider = (props) => {
     return totalAmount;
   }
 
-  const fetchFoodList=async()=>{
-    const response=await axios.get(url+"/api/food/list");
-    setFoodList(response.data.data);
-  }
+  const fetchFoodList = async () => {
+    try {
+      const response = await axios.get(url + "/api/food/list");
+      setFoodList(response.data.data);
+      setBackendDown(false); // backend is reachable
+    } catch (error) {
+      console.error("Backend is down:", error);
+      setBackendDown(true);
+    }
+  };
 
-  const loadCartdata = async(token)=>{
-    const response=await axios.post(url+"/api/cart/get",{},{headers:{token}});
+  const loadCartdata = async (token) => {
+  try {
+    const response = await axios.post(url + "/api/cart/get", {}, { headers: { token } });
     setCartItems(response.data.cartData);
+    setBackendDown(false);
+  } catch (error) {
+    console.error("Backend is down:", error);
+    setBackendDown(true);
   }
+};
     
   useEffect(()=>{
      async function loadData(){
@@ -74,9 +87,19 @@ const StoreContextProvider = (props) => {
   };
 
   return (
-    <StoreContext.Provider value={contextValue}>
-      {props.children}
-    </StoreContext.Provider>
+  <StoreContext.Provider value={contextValue}>
+    {backendDown ? (
+      <div style={{
+        height: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",
+        backgroundColor: "#f8d7da", color: "#721c24", textAlign: "center", padding: "2rem"
+      }}>
+        <h2>🚫 Service Unavailable</h2>
+        <p>Our servers are temporarily down. Please try again after a few minutes or drop <a href="https://www.linkedin.com/in/navam-sharma-baab95247/"></a> me a message</p>
+      </div>
+    ) : (
+      props.children
+    )}
+  </StoreContext.Provider>
   );
 };
 
