@@ -11,9 +11,11 @@ const LoginPopup = ({ setShowLogin }) => {
 
   const [currState, setCurrState] = useState("Login");
   const [data, setData] = useState({
-    name : "",
-    email : "",
-    password : ""
+    firstName : "",
+    lastName : "",
+    phone : "",
+    password : "",
+    email : ""
   })
 
   const onChangeHandler = (e) => {
@@ -65,15 +67,35 @@ const LoginPopup = ({ setShowLogin }) => {
           {currState === "Login" ? (
             <></>
           ) : (
-            <input
-              name="name"
-              onChange={onChangeHandler}
-              type="text"
-              placeholder="Your name"
-              required
-              value={data.name}
-            />
+            <>
+              <input
+                name="firstName"
+                onChange={onChangeHandler}
+                type="text"
+                placeholder="first name"
+                required
+                value={data.firstName}
+              />
+              <input
+                name="lastName"
+                onChange={onChangeHandler}
+                type="text"
+                placeholder="last name"
+                required
+                value={data.lastName}
+              />
+              <input
+                name="phone"
+                onChange={onChangeHandler}
+                type="Number"
+                placeholder="phone number"
+                required
+                value={data.phone}
+              />
+            </>     
           )}
+          
+
           <input
             name="email"
             onChange={onChangeHandler}
@@ -90,6 +112,7 @@ const LoginPopup = ({ setShowLogin }) => {
             required
             value={data.password}
           />
+          
         </div>
 
         <button type="submit" >

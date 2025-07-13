@@ -37,7 +37,7 @@ const createToken = (id) => {
 // register user
 
 const registerUser = async (req, res) => {
-  const { name, password, email } = req.body;
+  const { firstName, lastName, phone, password, email } = req.body;
 
   try {
     
@@ -64,8 +64,10 @@ const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = new userModel({
-      name: name,
+      firstName : firstName,
+      lastName : lastName,
       email: email,
+      phone : phone,
       password: hashedPassword
     });
 
@@ -75,7 +77,7 @@ const registerUser = async (req, res) => {
   
   } catch (error) {
       console.log(error);
-      res.json({ success: false, message: "Error" })
+      res.json({ success: false, message: error })
   }
 }
 
