@@ -94,7 +94,7 @@ const StoreContextProvider = (props) => {
         backgroundColor: "#f8d7da", color: "#721c24", textAlign: "center", padding: "2rem"
       }}>
         <h2>🚫 Service Unavailable</h2>
-        <p>Our servers are temporarily down. Please try again after a few minutes or drop <a href="https://www.linkedin.com/in/navam-sharma-baab95247/"></a> me a message</p>
+        <p>Our servers are temporarily down. Please try again after a few minutes or drop <a style={{color: 'blue', textDecoration: 'underline'}} target="_blank" rel="noopener noreferrer" href={`https://www.linkedin.com/in/navam-sharma-baab95247/`}>me</a> a message</p>
       </div>
     ) : (
       props.children
