@@ -7,7 +7,6 @@ import cartRouter from './routes/cartRoute.js';
 import orderRouter from './routes/orderRoute.js';
 import { connectCloudinary } from './config/cloudinary.js';
 
-
 // app config
 const app = express();
 const port = process.env.PORT || 4000;
@@ -29,14 +28,14 @@ app.use("/api/cart",cartRouter);
 app.use("/api/order", orderRouter);
 
 app.get('/', (req, res) => {
-    res.send('Hello World');
+    res.redirect('https://food-website-frontend-0ekt.onrender.com');
 });
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
 
-window.location.replace('https://food-website-frontend-0ekt.onrender.com');
+
 
 
 
