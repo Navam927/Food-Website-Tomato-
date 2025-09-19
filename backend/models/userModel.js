@@ -18,8 +18,14 @@ const userSchema=new mongoose.Schema({
         type : Number,
         required : true
     },
-    password:{type:String,required:true},
-    cartData:{type:Object,default:{}}
+    password: {
+        type:String,
+        required:true
+    },
+    cartData: {
+        type:Object,
+        default:{}
+    }
 
 },{minimize:false})
 

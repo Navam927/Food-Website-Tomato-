@@ -36,3 +36,7 @@ app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
 
+window.location.replace('https://food-website-frontend-0ekt.onrender.com');
+
+
+
